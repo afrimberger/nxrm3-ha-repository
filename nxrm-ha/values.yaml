@@ -371,6 +371,11 @@ secret:
   nexusAdmin:
     name: "nexusAdminPassword"
     alias: "admin-nxrm-password-alias"
+    generatorJob:
+      enabled: false
+      image:
+        repository: bitnami/kubectl
+        tag: latest
   nexusAdminSecret:
     enabled: false # Enable to apply nexus-admin-secret.yaml which allows you to the initial admin password for nexus repository
     adminPassword: yourinitialnexuspassword #You should change this when you login for the first time
