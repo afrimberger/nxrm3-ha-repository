@@ -239,7 +239,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/request.log
             initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.timeoutSeconds }}
@@ -258,7 +258,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/request.log
             initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.timeoutSeconds }}
@@ -278,7 +278,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/audit/audit.log
             initialDelaySeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.timeoutSeconds }}
@@ -297,7 +297,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/audit/audit.log
             initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.timeoutSeconds }}
@@ -318,7 +318,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/tasks/allTasks.log
             initialDelaySeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.timeoutSeconds }}
@@ -337,7 +337,7 @@ spec:
               command:
                 - test
                 - -f
-                - /path/to/your/logfile.log
+                - /nexus-data/log/tasks/allTasks.log
             initialDelaySeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.timeoutSeconds }}
