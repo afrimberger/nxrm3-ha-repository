@@ -71,6 +71,7 @@ statefulset:
       args:
         - -c
         - >-
+          set -x &&
           mkdir -p /nexus-data/etc/logback &&
           mkdir -p /nexus-data/log/tasks &&
           mkdir -p /nexus-data/log/audit &&
