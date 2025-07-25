@@ -78,7 +78,7 @@ statefulset:
           touch -a /nexus-data/log/tasks/allTasks.log &&
           touch -a /nexus-data/log/audit/audit.log &&
           touch -a /nexus-data/log/request.log &&
-          chown -Rf '200:200' /nexus-data/{etc,log}
+          chown -Rf '200:200' /nexus-data/etc /nexus-data/log
       volumeMounts:
         - name: nexus-data
           mountPath: /nexus-data
