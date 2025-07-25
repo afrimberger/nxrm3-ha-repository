@@ -77,6 +77,8 @@ spec:
       imagePullSecrets:
         - name: {{ .Values.statefulset.imagePullSecrets.existingSecret.name }}
       {{- end }}
+      securityContext:
+        {{ toYaml .Values.nexus.securityContext | nindent 12 }}
       containers:
         - name: nxrm-app
           image: {{ .Values.statefulset.container.image.repository }}:{{ .Values.statefulset.container.image.nexusTag }}
@@ -225,6 +227,8 @@ spec:
         - name: request-log
           image: {{ .Values.statefulset.requestLogContainer.image.repository }}:{{ .Values.statefulset.requestLogContainer.image.tag }}
           args: [/bin/sh, -c, 'tail -n+1 -F /nexus-data/log/request.log']
+          securityContext:
+            {{ toYaml .Values.nexus.securityContext | nindent 12 }}
           volumeMounts:
             - name: nexus-data
               mountPath: /nexus-data
@@ -233,6 +237,8 @@ spec:
         - name: audit-log
           image: {{ .Values.statefulset.auditLogContainer.image.repository }}:{{ .Values.statefulset.auditLogContainer.image.tag }}
           args: [/bin/sh, -c, 'tail -n+1 -F /nexus-data/log/audit/audit.log']
+          securityContext:
+            {{ toYaml .Values.nexus.securityContext | nindent 12 }}
           volumeMounts:
             - name: nexus-data
               mountPath: /nexus-data
@@ -242,6 +248,8 @@ spec:
         - name: tasks-log
           image: {{ .Values.statefulset.taskLogContainer.image.repository }}:{{ .Values.statefulset.taskLogContainer.image.tag }}
           args: [/bin/sh, -c, 'tail -n+1 -F /nexus-data/log/tasks/allTasks.log']
+          securityContext:
+            {{ toYaml .Values.nexus.securityContext | nindent 12 }}
           volumeMounts:
             - name: nexus-data
               mountPath: /nexus-data
