@@ -234,6 +234,35 @@ spec:
               mountPath: /nexus-data
           resources:
             {{ toYaml .Values.statefulset.requestLogContainer.resources | nindent 12 }}
+          startupProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.requestLogContainer.startupProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.requestLogContainer.startupProbe.failureThreshold }}
+          livenessProbe:
+            exec:
+              command:
+                - pidof
+                - tail
+            initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.requestLogContainer.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.requestLogContainer.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.requestLogContainer.livenessProbe.failureThreshold }}
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.requestLogContainer.readinessProbe.failureThreshold }}
         - name: audit-log
           image: {{ .Values.statefulset.auditLogContainer.image.repository }}:{{ .Values.statefulset.auditLogContainer.image.tag }}
           args: [/bin/sh, -c, 'tail -n+1 -F /nexus-data/log/audit/audit.log']
@@ -244,6 +273,35 @@ spec:
               mountPath: /nexus-data
           resources:
             {{ toYaml .Values.statefulset.auditLogContainer.resources | nindent 12 }}
+          startupProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.auditLogContainer.startupProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.auditLogContainer.startupProbe.failureThreshold }}
+          livenessProbe:
+            exec:
+              command:
+                - pidof
+                - tail
+            initialDelaySeconds: {{ .Values.statefulset.auditLogContainer.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.auditLogContainer.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.auditLogContainer.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.auditLogContainer.livenessProbe.failureThreshold }}
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.requestLogContainer.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.requestLogContainer.readinessProbe.failureThreshold }}
         {{- if .Values.logStorage.combineTaskLogs }}
         - name: tasks-log
           image: {{ .Values.statefulset.taskLogContainer.image.repository }}:{{ .Values.statefulset.taskLogContainer.image.tag }}
@@ -255,6 +313,35 @@ spec:
               mountPath: /nexus-data
           resources:
             {{ toYaml .Values.statefulset.taskLogContainer.resources | nindent 12 }}
+          startupProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.taskLogContainer.startupProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.taskLogContainer.startupProbe.failureThreshold }}
+          livenessProbe:
+            exec:
+              command:
+                - pidof
+                - tail
+            initialDelaySeconds: {{ .Values.statefulset.taskLogContainer.livenessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.taskLogContainer.livenessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.taskLogContainer.livenessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.taskLogContainer.livenessProbe.failureThreshold }}
+          readinessProbe:
+            exec:
+              command:
+                - test
+                - -f
+                - /path/to/your/logfile.log
+            initialDelaySeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.statefulset.taskLogContainer.readinessProbe.timeoutSeconds }}
+            failureThreshold: {{ .Values.statefulset.taskLogContainer.readinessProbe.failureThreshold }}
         {{ end }}
         {{ end }}
         {{- if .Values.statefulset.additionalContainers }}
